@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <locale.h>
 #include <time.h>
-#define size 20
+#define size 10
 using namespace std;
 
 int main()
@@ -114,6 +114,182 @@ int main()
 			{
 				/*9.	Отсортировать по возрастанию элементов последней строки целочисленный двухмерный массив 3×4.*/
 
+			} break;
+
+			case 6:
+			{
+				/*6.	В матрице А(3 - строки, 4 - столбца) поменять местами наименьшие элементы в первой и третей строке.*/
+				int m[3][4], min1, min2;
+				for (int i = 0; i < 3; i++)
+				{
+					for (int j = 0; j < 4; j++)
+					{
+						m[i][j] = -50 + rand() % 100;
+						cout << m[i][j] << "\t";
+						if (j == 4 - 1)
+							cout << "\n";
+					}
+				}
+				for (int i = 0; i < 3; i++)
+				{	
+					if (i == 0)
+						min1 = m[i][0];
+					if (i == 3)
+						min2 = m[i][0];
+					for (int j = 0; j < 4; j++)
+					{
+						if(i == 1)
+							if (m[i][j] < min1)
+								min1 = m[i][j];
+						if (i == 3)
+							if (m[i][j] < min2)
+								min2 = m[i][j];
+					}
+				}
+				cout << "\n=======" << endl;
+				for (int i = 0; i < 3; i++)
+				{
+					for (int j = 0; j < 4; j++)
+					{
+						if(i == 1)
+							if (m[i][j] == min1)
+								m[i][j] = min2;
+						if (i == 3)
+							if (m[i][j] == min2)
+								m[i][j] = min1;
+						cout << m[i][j] << "\t";
+						if (j == 4 - 1)
+							cout << "\n";
+					}
+				}
+
+			} break;
+
+			case 7:
+			{
+				/*Дан двухмерный массив 5×6.
+					Определить среднее арифметическое каждого столбца, 
+					определить максимум и минимум каждой строки.*/
+				int m[5][6], min, max, sum = 0;
+				for (int i = 0; i < 5; i++)
+				{
+					for (int j = 0; j < 6; j++)
+					{
+						m[i][j] = -50 + rand() % 100;
+						cout << m[i][j] << "\t";
+						if (j == 6 - 1)
+							cout << "\n";
+					}
+				}
+				cout << "\n=======" << endl;
+				for (int i = 0; i < 5; i++)
+				{
+					max = 0;
+					min = 0;
+					for (int j = 0; j < 6; j++)
+					{
+						if (m[i][j] < min)
+							min = m[i][j];
+						if (m[i][j] > max)
+							max = m[i][j];
+						if (j == 5)
+						{
+							cout << "Max значение в строке " << i << " --- " << max << endl;
+							cout << "Min значение в строке " << i << " --- " << min << endl;
+						}
+					}
+				}
+				cout << "\n=======" << endl;
+				for (int j = 0; j < 6; j++)
+				{
+					sum = 0;
+					for (int i = 0; i < 5; i++)
+					{
+						sum += m[i][j];
+						if (i == 4)
+						{
+							cout << "Ср. арифм. столбца № " << j << " == " << sum / 5 << endl;
+						}
+					}
+				}
+			} break;
+
+			case 8:
+			{
+				/*Дан двухмерный массив n×m элементов, найти количество четных и нечетных чисел в массиве.*/
+				int m[size][size], count1 = 0, count2 = 0;
+				for (int i = 0; i < length; i++)
+				{
+					for (int j = 0; j < length; j++)
+					{
+						m[i][j] = -50 + rand() % 100;
+						if (m[i][j] % 2 != 0)
+							count1++;
+						if (m[i][j] % 2 == 0)
+							count2++;
+						cout << m[i][j] << "\t";
+						if (j == length - 1)
+							cout << "\n";
+					}
+				}
+				cout << "Кол-во нечетных чисел - " << count1 << endl;
+				cout << "Кол-во четных чисел - " << count2 << endl;
+
+			} break;
+
+			case 9:
+			{
+				/*Дан двухмерный массив n ×m элементов.Определить, сколько раз встречается число 7 среди элементов массива.*/
+				int m[size][size], count = 0;
+				for (int i = 0; i < length; i++)
+				{
+					for (int j = 0; j < length; j++)
+					{
+						m[i][j] = -50 + rand() % 100;
+						if (m[i][j] == 7)
+							count++;
+						cout << m[i][j] << "\t";
+						if (j == length - 1)
+							cout << "\n";
+					}
+				} 
+				cout << "Число 7 встречается " << count << " раз." << endl;
+			} break;
+			
+			case 10:
+			{
+				/*10.	Дан массив из n × m элементов.Найти индексы первого наименьшего  элемента массива*/
+				int m[size][size], min = 0, a, b;
+				for (int i = 0; i < length; i++)
+				{
+					for (int j = 0; j < length; j++)
+					{
+						m[i][j] = -100 + rand() % 200;
+						cout << m[i][j] << "\t";
+						if (j == length - 1)
+							cout << "\n";
+					}
+				} for (int i = 0; i < length; i++)
+				{
+					cout << i << "\t";
+				}
+				cout << endl;
+				for (int i = 0; i < length; i++)
+				{	
+					min = 0;
+					for (int j = 0; j < length; j++)
+					{
+						if (m[i][j] < min)
+						{
+							min = m[i][j];
+							a = i;
+							b = j;
+						}
+							
+						if (j == length - 1)
+							cout << "Index min числа " << a << " && " << b << "\nРавно " << min << endl;
+					}
+				}
 			} break;
 		} 
 	} while (task < 11);
