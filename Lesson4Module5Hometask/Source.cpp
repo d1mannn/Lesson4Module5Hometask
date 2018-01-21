@@ -21,11 +21,12 @@ int main()
 			{
 				/*Дано целое число в двоичной системе счисления, т.е.последовательность цифр
 					0 и 1. Составить программу перевода этого числа в восьмеричную систему счисления.*/
-				int eight[8] = { 0, 1, 10, 11, 100, 101, 110, 111 }, a, b, count = 0, i = 0, x, y;
-				int m[20];
+				int eight[8] = { 0, 1, 10, 11, 100, 101, 110, 111 }, a, b, c, count = 0, i =0;
+				int m[20], m2[20];
 				cout << "Введите число А - ";
 				cin >> a;
 				b = a;
+				cout << "a = " << a << endl;
 				while (a > 0)
 				{
 					if (a % 2 == 0)
@@ -47,7 +48,38 @@ int main()
 				{
 					cout << m[i];
 				}
+				a = 0;
+				cout << "\nПереводим в 10 - " << endl;
+				for (int i = 0; i < count; i++)
+				{
+					a+= pow(2, i) * m[i];
+					cout << a << endl;
+				}
 				cout << "\nПереводим в 8 - " << endl;
+				i = 0;
+				count = 0;
+				while (a > 0)
+				{
+					if (a % 8 == 0)
+					{	
+						a /= 8;
+						m[i] = a % 8;
+						count++;
+					}
+					else
+					{
+						c = a / 8;
+						m[i] = a - c * 8;
+						a = c;
+						count++;
+					}
+					i++;
+				}
+				cout << "В 8 системе число " << b << " = ";
+				for (int i = count - 1; i >= 0; i--)
+				{
+					cout << m[i];
+				} cout << endl;
 
 
 			} break;
@@ -56,11 +88,11 @@ int main()
 			{
 				/*Ввести два массива действительных чисел, состоящих из 7 и  9 элементов.
 					Сформировать третий массив из упорядоченных по убыванию значений обоих массивов.*/
-				int m1[7], m2[9], m3[16];
+				int m1[7], m2[9], m3[20];
 				for (int i = 0; i < 7; i++)
 				{
 					m1[i] = -50 + rand() % 100;
-					cout << m1[i] << "\t";
+					cout << m1[i] << " ";
 					if (i == 6)
 						cout << "\n";
 				}
@@ -68,7 +100,7 @@ int main()
 				for (int i = 0; i < 9; i++)
 				{
 					m2[i] = -50 + rand() % 100;
-					cout << m2[i] << "\t";
+					cout << m2[i] << " ";
 					if (i == 8)
 						cout << "\n";
 				}
@@ -80,29 +112,29 @@ int main()
 				{
 					m3[i + 7] = m2[i];
 				}
-				cout << "\n3333333333" << endl;
+				cout << "\n===============\n" << endl;
 				for (int i = 0; i < 16; i++)
 				{
-					cout << m3[i] << "  ";
+					cout << m3[i] << " ";
 				}
 				cout << endl;
 				cout << "Сортировка" << endl;
 				for (int i = 0; i < 16; i++)
 				{
-					for (int j = 16 - 1; j >= 0; j--)
+					for (int j = 0; j < 16 - 1; j++)
 					{
-						if (m3[j - 1] < m3[j])
+						if (m3[j + 1] > m3[j])
 						{
-							int tempo = m3[j];
-							m3[j] = m3[j - 1];
-							m3[j - 1] = tempo;
+							int tempo = m3[j + 1];
+							m3[j + 1] = m3[j];
+							m3[j] = tempo;
 						}
 					}
 				}
 				for (int i = 0; i < 16; i++)
 				{
-					cout << m3[i] << "  ";
-				}
+					cout << m3[i] << " ";
+				} cout << endl;
 			} break;
 
 			case 3:
@@ -119,7 +151,7 @@ int main()
 					for (int j = i + 1; j < length; j++)
 					{
 						if (m[i] == m[j])
-							cout << i << " iii " << j << endl;
+							cout << "Значение индекса " << i << " == значению индекса " << j << endl;
 					}
 				}
 				
@@ -149,6 +181,43 @@ int main()
 			{
 				/*5.	Отсортировать по убыванию элементов последнего столбца целочисленный двухмерный массив 5×4*/
 
+				// Как отсортировать столбец? 
+				int m[5][4];
+				for (int i = 0; i < 5; i++)
+				{
+					for (int j = 0; j < 4; j++)
+					{
+						m[i][j] = -50 + rand() % 100;
+						cout << m[i][j] << "\t";
+					}
+					cout << endl;
+				}
+				for (int i = 0; i < 5; i++)
+				{
+					for (int j = 0; j < 4; j++)
+					{
+						for (int b = 0; b < 4 - 1; b++)
+						{
+							if (m[i][b] > m[i][b + 1])
+							{
+								int temp = m[i][b];
+								m[i][b] = m[i][b + 1];
+								m[i][b + 1] = temp;
+							}
+						}
+					}
+				}
+				cout << "\nСортировка\n" << endl;
+				for (int i = 0; i < 5; i++)
+				{
+					for (int j = 0; j < 4; j++)
+					{
+						cout << m[i][j] << "\t";
+					}
+					cout << endl;
+				}
+
+
 			} break;
 
 			case 6:
@@ -161,41 +230,37 @@ int main()
 					{
 						m[i][j] = -50 + rand() % 100;
 						cout << m[i][j] << "\t";
-						if (j == 4 - 1)
-							cout << "\n";
-					}
+					} cout << endl;
 				}
 				for (int i = 0; i < 3; i++)
 				{	
 					if (i == 0)
 						min1 = m[i][0];
-					if (i == 3)
+					if (i == 2)
 						min2 = m[i][0];
 					for (int j = 0; j < 4; j++)
 					{
-						if(i == 1)
+						if(i == 0)
 							if (m[i][j] < min1)
 								min1 = m[i][j];
-						if (i == 3)
+						if (i == 2)
 							if (m[i][j] < min2)
 								min2 = m[i][j];
 					}
-				}
+				} cout << "\n" << min1 << " и " << min2 << endl;
 				cout << "\n=======" << endl;
 				for (int i = 0; i < 3; i++)
 				{
 					for (int j = 0; j < 4; j++)
 					{
-						if(i == 1)
+						if(i == 0)
 							if (m[i][j] == min1)
 								m[i][j] = min2;
-						if (i == 3)
+						if (i == 2)
 							if (m[i][j] == min2)
 								m[i][j] = min1;
 						cout << m[i][j] << "\t";
-						if (j == 4 - 1)
-							cout << "\n";
-					}
+					} cout << endl;
 				}
 
 			} break;
@@ -212,9 +277,7 @@ int main()
 					{
 						m[i][j] = -50 + rand() % 100;
 						cout << m[i][j] << "\t";
-						if (j == 6 - 1)
-							cout << "\n";
-					}
+					} cout << endl;
 				}
 				cout << "\n=======" << endl;
 				for (int i = 0; i < 5; i++)
